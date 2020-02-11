@@ -1,0 +1,140 @@
+/**
+ * @author Zachary Locke
+ * Date: 
+ * Purpose: 
+ */
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String [] args)
+    {
+        Scanner reader = new Scanner(System.in);
+        String temp;
+        String myNum;
+        int max = -1;
+        int value = 0;
+        char [] v;
+        char v1, v2, v3, v4, v5;
+        ArrayList<String> myList = new ArrayList<>();
+        
+        
+        for(int a=0; a<26; a++)
+        {
+            v1=(char)(a+97);
+                        char[] dum = {v1};
+                                        myNum = new String(dum);
+                                        //System.out.printf("%s\n", myNum);
+                                        myList.add(myNum);      
+        }
+        
+        
+        for(int a=0; a<26; a++)
+        {
+            v1=(char)(a+97);
+            for(int b=a+1; b<26; b++)
+            {
+            v2=(char)(b+97);
+                        char[] dum = {v1, v2};
+                                        myNum = new String(dum);
+                                        //System.out.printf("%s\n", myNum);
+                                        myList.add(myNum);            }
+        }
+        
+        for(int a=0; a<26; a++)
+        {
+            v1=(char)(a+97);
+            for(int b=a+1; b<26; b++)
+            {
+            v2=(char)(b+97);
+                for(int c=b+1; c<26; c++)
+                {
+                        v3=(char)(c+97);
+                        char[] dum = {v1, v2, v3};
+                                        myNum = new String(dum);
+                                        //System.out.printf("%s\n", myNum);
+                                        myList.add(myNum);
+                }
+            }
+        }
+        
+        
+        for(int a=0; a<26; a++)
+        {
+            v1=(char)(a+97);
+            for(int b=a+1; b<26; b++)
+            {
+            v2=(char)(b+97);
+                for(int c=b+1; c<26; c++)
+                {
+                        v3=(char)(c+97);        
+                    for(int d=c+1; d<26; d++)
+                    {
+                                    v4=(char)(d+97);
+                                        char[] dum = {v1, v2, v3, v4};
+                                        myNum = new String(dum);
+                                        //System.out.printf("%s\n", myNum);
+                                        myList.add(myNum);
+                    }
+                }
+            }
+        }
+        
+        
+        for(int a=0; a<26; a++)
+        {
+            v1=(char)(a+97);
+            for(int b=a+1; b<26; b++)
+            {
+            v2=(char)(b+97);
+                for(int c=b+1; c<26; c++)
+                {
+                        v3=(char)(c+97);        
+                    for(int d=c+1; d<26; d++)
+                    {
+                                    v4=(char)(d+97);
+                        for(int e=d+1; e<26; e++)
+                        {
+                                        v5=(char)(e+97);
+                                        char[] dum = {v1, v2, v3, v4, v5};
+                                        myNum = new String(dum);
+                                        //System.out.printf("%s\n", myNum);
+                                        myList.add(myNum);
+                        }
+                    }
+                }
+            }
+        }
+     //   System.out.println(myList.toString());
+        while(reader.hasNextLine())
+        {
+            temp = reader.nextLine();
+            value = myList.indexOf(temp);
+            value++;
+            System.out.printf("%d\n", value);
+           /* for(int n=0; n<temp.length(); n++)
+            {
+                value = (int)temp.charAt(n) - 96;
+                if(max==-1)
+                {
+                    max=value;
+                }
+                if(max>value)
+                {
+                //    System.out.printf("BREAKING!\nBreakValue: %d\nBreakMax: %d\n", value, max);
+                    System.out.println("0");
+                    break;
+                }
+                else
+                {
+                    max = value;
+                }
+                
+                
+                */
+                
+                //System.out.printf("value: %d\nmax: %d\n", value, max);
+            }
+        }
+    }
