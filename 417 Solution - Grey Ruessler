@@ -1,0 +1,44 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.TreeMap;
+
+/**
+ *
+ * @author gtruessler1s
+ */
+public class Main {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+       
+        TreeMap m = new TreeMap();
+        for (int i=1;i<=5;i++) {
+            buildMap(m,"",'a'-1,0,i);
+        }
+        //ArrayList<String> words = new ArrayList();
+        while (sc.hasNextLine()) {
+            String l = sc.nextLine();
+            System.out.println(getWord(m,l));
+        }
+    }
+   
+    public static int getWord(TreeMap m, String s) {
+        Integer res = (Integer)m.get(s);
+        return (res==null ? 0 : res);
+    }
+   
+    public static void buildMap(TreeMap m, String w, int end, int depth, int targetDepth) {
+        if (depth==targetDepth) {
+            m.put(w,m.size()+1);
+            return;
+        }
+        int nd = depth+1;
+        for (char c=(char)(end+1);c<(97+26);c++) {
+            buildMap(m,w+c,c,nd,targetDepth);
+        }
+    }
+   
+}
