@@ -1,0 +1,28 @@
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+/**
+ *
+ * @author Alexander Fogelbach
+ */
+public class Main {
+    public static void main(String[] args) {
+        Map<Integer, Integer> frequencies = new LinkedHashMap();
+        Scanner input = new Scanner(System.in);
+        int currentInt;
+        while(input.hasNextInt())
+        {
+            currentInt = input.nextInt();
+            if(!frequencies.containsKey(currentInt))
+                frequencies.put(currentInt, 1);
+            else
+                frequencies.put(currentInt, frequencies.get(currentInt) + 1);
+        }
+        
+        frequencies.forEach((k, v) -> {
+            System.out.println(k + " " + v);
+        });
+    }
+    
+}
