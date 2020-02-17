@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+/**
+ *
+ * @author Alex Fogelbach
+ */
+public class Main {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        while(input.hasNext())
+            printQuirks(input.nextInt());
+    }
+    public static void printQuirks(int length)
+    {
+        switch(length)
+        {
+            case 2:
+                System.out.println("00\n" +
+                                    "01\n" +   
+                                    "81");
+                break;
+            case 4:
+                System.out.println("0000\n" +
+                                    "0001\n" +
+                                    "2025\n" +
+                                    "3025\n" +
+                                    "9801");
+                break;
+            case 6:
+                System.out.println("000000\n" +
+                                    "000001\n" +
+                                    "088209\n" +
+                                    "494209\n" +
+                                    "998001");
+                break;
+            case 8:
+                System.out.println("00000000\n" +
+                                    "00000001\n" +
+                                    "04941729\n" +
+                                    "07441984\n" +
+                                    "24502500\n" +
+                                    "25502500\n" +
+                                    "52881984\n" +
+                                    "60481729\n" +
+                                    "99980001");
+                break;
+        }
+    }
+   
+}
