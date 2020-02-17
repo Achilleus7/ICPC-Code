@@ -1,0 +1,51 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/**
+ *
+ * @author Alex Fogelbach
+ */
+public class Main {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        while(input.hasNext())
+            printQuirks(input.nextInt());
+    }
+    public static void printQuirks(int length)
+    {
+        String zeroes = "";
+        String sNum = "";
+        for(int i = 0; i < length; i++)
+        {
+            sNum += "9";
+        }
+        int max = Integer.parseInt(sNum);
+        for(int i = 0; i < max; i++)
+        {
+            if(checkQuirk(i, length))
+            {
+                zeroes = "";
+                for(int j = 0; j < length - String.valueOf(i).length(); j++)
+                    zeroes += "0";
+                System.out.println(zeroes + i);
+            }
+        }
+    }
+    public static boolean checkQuirk(int original, int length)
+    {
+        int part1, part2;
+        String sNum = String.valueOf(original);
+        if(sNum.length() < length)
+        {
+            for(int i = 0; i < length - sNum.length(); i++)
+            {
+                sNum = "0" + sNum;
+            }
+        }
+        part1 = Integer.parseInt(sNum.substring(0, sNum.length()/2));
+        part2 = Integer.parseInt(sNum.substring(sNum.length()/2, sNum.length()));
+        
+        return Math.pow(part1 + part2, 2) == original;
+    }
+   
+}
