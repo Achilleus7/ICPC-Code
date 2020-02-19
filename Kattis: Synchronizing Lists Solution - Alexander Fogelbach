@@ -1,3 +1,5 @@
+//https://open.kattis.com/problems/synchronizinglists
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
