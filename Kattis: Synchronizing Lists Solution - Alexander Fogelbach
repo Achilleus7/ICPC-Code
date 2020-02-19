@@ -1,0 +1,54 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+/**
+ *
+ * @author Alex Fogelbach
+ */
+public class Main {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        ArrayList<Integer> list1 = new ArrayList();
+        ArrayList<Integer> list2 = new ArrayList();
+        ArrayList<Integer> listCopy = new ArrayList();
+        Map<Integer, Integer> pairs = new LinkedHashMap();
+        int n = -1;
+        boolean firstLoop = true;
+        while(n != 0)
+        {
+            if(!firstLoop)
+                System.out.println();
+            firstLoop = false;
+            n = input.nextInt();
+            for(int i = 0; i < n; i++)
+            {
+                list1.add(input.nextInt());
+            }
+            for(int i = 0; i < n; i++)
+            {
+                list2.add(input.nextInt());
+            }
+            listCopy.addAll(list1);
+            Collections.sort(list1);
+            Collections.sort(list2);
+            for(int i = 0; i < n; i++)
+            {
+                pairs.put(list1.get(i), list2.get(i));
+            }
+            
+            for(int i = 0; i < n; i++)
+            {
+                System.out.println(pairs.get(listCopy.get(i)));
+            }
+            
+            list1.clear();
+            list2.clear();
+            listCopy.clear();
+        }
+    }
+   
+}
