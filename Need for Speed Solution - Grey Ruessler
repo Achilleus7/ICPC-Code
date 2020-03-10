@@ -1,0 +1,69 @@
+//https://open.kattis.com/problems/speed
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author gtruessler1s
+ */
+public class Main {
+    static final double absMax = 1001000;
+    static final int escapeIterations = 200;
+    static final double prec = Math.pow(10,6);
+   
+    public static class Segment {
+        int d;
+        int s;
+        public Segment(int d, int s) {
+            this.d = d;
+            this.s = s;
+        }
+    }
+   
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int t = sc.nextInt();
+        ArrayList<Segment> segments = new ArrayList<>();
+        for (int i=0; i<n; i++) {
+            int d = sc.nextInt();
+            int s = sc.nextInt();
+            segments.add(new Segment(d,s));
+        }
+        double absMin = Double.MAX_VALUE;
+        for (Segment seg: segments) {
+            absMin = Math.min(absMin, seg.s);
+        }
+        absMin = -absMin;
+       
+        System.out.println(searchSpeed(segments, t, absMin, absMax,0,-Double.MIN_VALUE));
+    }
+    public static double searchSpeed( ArrayList<Segment> segments, double time, double min, double max, int depth, double lastMid) {
+        double mid = (min+max)/2;
+        double comp = (mid - lastMid)*prec;
+        //System.out.println(comp);
+        if (comp<1 && comp>-1) {
+            //System.out.print("Prematurely terminated at depth: ");
+            //System.out.println(depth);
+            return mid;
+        }
+        if (depth>escapeIterations) {
+            return mid;
+        }
+        double avg = 0;
+        for (Segment seg: segments) {
+            avg+=seg.d/(seg.s+mid);
+        }
+        if (avg<time) {
+            return searchSpeed(segments,time,min,mid,depth+1,mid);
+        } else {
+            return searchSpeed(segments,time,mid,max,depth+1,mid);
+        }
+    }
+}
