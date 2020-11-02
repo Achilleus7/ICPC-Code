@@ -1,0 +1,18 @@
+import java.util.StringTokenizer;
+class Solution {
+    public String reverseWords(String s) {
+        StringBuilder sb = new StringBuilder();
+        StringTokenizer st = new StringTokenizer(s, " ");
+        ArrayList<String> words = new ArrayList<>();
+        while(st.hasMoreTokens())
+        {
+            words.add(st.nextToken());
+        }
+        for(int i = words.size() - 1; i > 0; i--)
+        {
+            sb.append(words.get(i) + " ");
+        }
+        sb.append(words.get(0));
+        return sb.toString();
+    }
+}
