@@ -1,0 +1,87 @@
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int start = lowestIndex(nums, target);
+        if(start == -1)
+        {
+            int[] neg = {-1, -1};
+            return neg;
+        }
+        int end = highestIndex(nums, target, start);
+        int[] result = {start, end};
+        return result;
+    }
+    public int lowestIndex(int[] nums, int target)
+    {
+        if(nums.length == 0)
+            return -1;
+        int low, high, mid = 0;
+        low = 0;
+        high = nums.length - 1;
+        while (low < high)
+        {
+            mid = (high + low) / 2;
+            if(target == nums[mid])
+            {
+                high = mid;
+                break;
+            }
+            else if(target > nums[mid])
+            {
+                low = mid + 1;
+            }
+            else
+            {
+                high = mid;
+            }
+        }
+        if(target != nums[high])
+            return -1;
+        low = 0;
+        while (low < high)
+        {
+            mid = (high + low) / 2;
+            if(target != nums[mid] && target == nums[mid + 1])
+            {
+                return mid + 1;
+            }
+            else if(target != nums[mid] && target != nums[mid + 1])
+            {
+                low = mid + 1;
+            }
+            else if(target == nums[mid] && target == nums[mid + 1])
+            {
+                high = mid;
+            }
+        }
+        if(target == nums[0])
+            return 0;
+        return -1;
+    }
+    public int highestIndex(int[] nums, int target, int index)
+    {
+        int low, high, mid = 0;
+        low = 0;
+        high = nums.length - 1;
+        low = index;
+        high = nums.length - 1;
+        while (low < high)
+        {
+            mid = (high + low) / 2;
+            if(target == nums[mid] && target != nums[mid + 1])
+            {
+                return mid;
+            }
+            else if(target != nums[mid] && target != nums[mid + 1])
+            {
+                high = mid;
+            }
+            else if(target == nums[mid] && target == nums[mid + 1])
+            {
+                low = mid + 1;
+            }
+        }
+        if(target == nums[nums.length - 1])
+            return nums.length - 1;
+        return -1;
+    }
+}
