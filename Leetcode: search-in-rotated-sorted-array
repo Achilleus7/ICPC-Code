@@ -1,0 +1,65 @@
+class Solution {
+    public int search(int[] nums, int target) {
+        int low, high, mid = 0;
+        low = 0;
+        high = nums.length - 1;
+        while (low < high)
+        {
+            mid = (high + low) / 2;
+            if(target == nums[mid])
+                return mid;
+            else if(target > nums[mid])
+            {
+                //We are on the right
+                if(nums[mid] <= nums[nums.length -1])
+                {
+                    //We need to stay right
+                    if(target <= nums[nums.length - 1])
+                    {
+                        low = mid + 1;
+                    }
+                    //We need to go to left side
+                    else
+                    {
+                        high = mid;
+                    }
+                }
+                //we are on left
+                else
+                {
+                    //We need to stay left
+                    if(target > nums[0])
+                    {
+                        low = mid + 1;
+                    }
+                }
+            }
+            else
+            {
+                //We are on the right
+                if(nums[mid] <= nums[nums.length -1])
+                {
+                    high = mid;
+                }
+                //we are on left
+                else
+                {
+                    //We need to stay left
+                    if(target >= nums[0])
+                    {
+                        high = mid;
+                    }
+                    else
+                    {
+                        low = mid + 1;
+                    }
+                }
+            }
+        }
+        if(target == nums[low])
+        {
+            return low;
+        }
+        return -1;
+    }
+}
