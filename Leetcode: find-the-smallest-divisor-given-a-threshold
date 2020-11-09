@@ -1,0 +1,28 @@
+class Solution {
+    public int result(int[] nums, int div) {
+        int total=0;
+        for (int i=0; i<nums.length; i++) {
+            total+=(nums[i] + div - 1) / div;
+        }
+        return total;
+    }
+    public int searchDivisor(int[] nums, int threshold) {
+        int min = 1;
+        int max = nums[nums.length-1];
+        while (min<max) {
+            int mid = (min+max)/2;
+            int midRes = result(nums,mid);
+            //System.out.println(mid);
+            //System.out.println(midRes);
+            if (midRes<=threshold)
+                max=mid;
+            else
+                min=mid+1;
+        }
+        return min;
+       
+    }
+    public int smallestDivisor(int[] nums, int threshold) {
+        return (searchDivisor(nums,threshold));
+    }
+}
